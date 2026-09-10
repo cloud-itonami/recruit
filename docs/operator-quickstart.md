@@ -7,7 +7,7 @@
 計測環境: macOS 26.3.1 / nbb v1.5.212 / Clojure CLI 1.12.5.1654。
 
 前提: この repo を clone してその root に居ること。**外部サービスも credential も
-DB も要らない** —— `src/recruit/murakumo.cljc` は純関数だけで、I/O を 1 つも
+DB も要らない** —— `src/recruit/murakumo.kotoba` は純関数だけで、I/O を 1 つも
 しないため。
 
 ---
@@ -161,7 +161,7 @@ Ran 9 tests containing 304 assertions.
 0 failures, 0 errors.
 ```
 
-`src/recruit/murakumo.cljc` は `clojure.string` しか require しない `.cljc` なので、
+`src/recruit/murakumo.kotoba` は `clojure.string` しか require しない `.cljc` なので、
 nbb でそのまま読める。
 
 ### deps.edn が宣言している経路（JVM）
@@ -187,7 +187,7 @@ clojure -M:lint > /tmp/recruit-lint.log 2>&1; echo "EXIT=$?"; tail -5 /tmp/recru
 ```
 
 観測した出力: `EXIT=0` / `errors: 0, warnings: 1`（所要時間は run ごとに変わるので値を写さない）。
-その 1 件は `src/recruit/murakumo.cljc:208:14: warning: unused binding input`
+その 1 件は `src/recruit/murakumo.kotoba:208:14: warning: unused binding input`
 （`records-for` の `:as input`）で、既知・無害。**`--fail-level error` なので
 warning では落ちない。**
 
@@ -206,5 +206,5 @@ warning では落ちない。**
 | RisingWave / `RW_CONN` を使う live smoke | DB クライアントが無い（依存は test-runner と clj-kondo だけ） |
 
 これらは actor が etzhayyim monorepo に居た頃の面である。**この repo の
-production source は `src/recruit/murakumo.cljc` 1 本だけ**（`git ls-files` で
+production source は `src/recruit/murakumo.kotoba` 1 本だけ**（`git ls-files` で
 9 ファイル、うち `src/` は 1 本）。

@@ -9,8 +9,8 @@
 を計算する純関数である。
 
 ```
-src/recruit/murakumo.cljc    ← 唯一の production source（22 cell の仕様 + plan 関数）
-test/recruit/murakumo_test.cljc
+src/recruit/murakumo.kotoba    ← 唯一の production source（22 cell の仕様 + plan 関数）
+test/recruit/murakumo_test.kotoba
 actor-manifest.jsonld        ← actor の宣言（pipeline / governance / data source allowlist）
 .well-known/did.json         ← did:web:etzhayyim.com:actor:recruit
 ```
