@@ -24,7 +24,7 @@ west 管理下なら checkout は既に `orgs/cloud-itonami/recruit` に在る�
 ## Step 1 — 何が居るかを見る（JVM 不要、数秒）
 
 ```bash
-nbb --classpath src -e '
+kbb --backend sci --classpath src -e '
 (require (quote [recruit.murakumo :as m]))
 (println (count m/cell-specs) "cells")
 (prn (vec (sort (keys m/cell-specs))))'
@@ -47,7 +47,7 @@ requiredLoops から起こされた cell である。
 ## Step 2 — 何も attest せずに計画を求める（= 門が閉まっていることを見る）
 
 ```bash
-nbb --classpath src -e '
+kbb --backend sci --classpath src -e '
 (require (quote [recruit.murakumo :as m]))
 (let [plan (m/cell-plan :stats {})]
   (println "status        =" (:status plan))
@@ -73,7 +73,7 @@ missing-gates = 7
 ## Step 3 — 7 gate を全部 attest して計画を求める
 
 ```bash
-nbb --classpath src -e '
+kbb --backend sci --classpath src -e '
 (require (quote [recruit.murakumo :as m]))
 (let [att  (into {} (map (fn [g] [g "attested"])) m/common-gates)
       plan (m/cell-plan :stats {:attestations att :request-id "demo-1"})]
@@ -118,7 +118,7 @@ put するのは呼び出し側で、このライブラリは `:op` を組み立
 同じ出力になる。7 つのうち **ちょうど 1 つ**を落とす:
 
 ```bash
-nbb --classpath src -e '
+kbb --backend sci --classpath src -e '
 (require (quote [recruit.murakumo :as m]))
 (let [att  (into {} (map (fn [g] [g "attested"])) (rest m/common-gates))
       plan (m/cell-plan :stats {:attestations att :request-id "demo-2"})]
@@ -147,7 +147,7 @@ effects       = 0
 ### JVM を起こさない経路（速い。既定はこちら）
 
 ```bash
-nbb --classpath src:test -e '
+kbb --backend sci --classpath src:test -e '
 (require (quote [cljs.test :as t]) (quote [recruit.murakumo-test]))
 (t/run-tests (quote recruit.murakumo-test))'
 ```
@@ -167,23 +167,23 @@ nbb でそのまま読める。
 ### deps.edn が宣言している経路（JVM）
 
 ```bash
-clojure -M:test
+kbb -M:test
 ```
 
 観測した出力（`Ran 9 tests containing 304 assertions. 0 failures, 0 errors.`、
 exit 0）。初回は cognitect test-runner の取得で時間がかかる。
 
-⚠ **exit code を pipe 越しに読まないこと** —— `clojure -M:test | tail` の `$?` は
+⚠ **exit code を pipe 越しに読まないこと** —— `kbb -M:test | tail` の `$?` は
 `tail` の終了値で、テストの値ではない。先にファイルへ落としてから読む:
 
 ```bash
-clojure -M:test > /tmp/recruit-test.log 2>&1; echo "EXIT=$?"; tail -20 /tmp/recruit-test.log
+kbb -M:test > /tmp/recruit-test.log 2>&1; echo "EXIT=$?"; tail -20 /tmp/recruit-test.log
 ```
 
 ## Step 6 — lint
 
 ```bash
-clojure -M:lint > /tmp/recruit-lint.log 2>&1; echo "EXIT=$?"; tail -5 /tmp/recruit-lint.log
+kbb -M:lint > /tmp/recruit-lint.log 2>&1; echo "EXIT=$?"; tail -5 /tmp/recruit-lint.log
 ```
 
 観測した出力: `EXIT=0` / `errors: 0, warnings: 1`（所要時間は run ごとに変わるので値を写さない）。

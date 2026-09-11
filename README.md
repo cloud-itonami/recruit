@@ -58,7 +58,7 @@ attestations 充足 → {:status :ready   :effects [{:op :mst/put-record ...}]}
 ## 30 秒で確かめる
 
 ```bash
-nbb --classpath src:test -e '(require (quote [cljs.test :as t]) (quote [recruit.murakumo-test])) (t/run-tests (quote recruit.murakumo-test))'
+kbb --backend sci --classpath src:test -e '(require (quote [cljs.test :as t]) (quote [recruit.murakumo-test])) (t/run-tests (quote recruit.murakumo-test))'
 # => Ran 9 tests containing 304 assertions. 0 failures, 0 errors.
 ```
 
