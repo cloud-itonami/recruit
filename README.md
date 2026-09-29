@@ -40,9 +40,9 @@ attestations 充足 → {:status :ready   :effects [{:op :mst/put-record ...}]}
 | `isco.etzhayyim.com` | ISCO-08 occupation taxonomy | 職業コードの正本。ここは参照するだけ |
 | `legal-entity.etzhayyim.com` | 法人実体（LEI / 法人番号） | posting の錨。ここは DID を持つだけで解決しない |
 
-## ⚠ `CLAUDE.md` はこの repo の操作手順ではない
+## ⚠ `AGENTS.md` はこの repo の操作手順ではない
 
-同梱の `CLAUDE.md` は **actor の仕様スナップショット**であって、この checkout で
+同梱の `AGENTS.md` は **actor の仕様スナップショット**であって、この checkout で
 踏める手順書ではない。そこに書かれている
 
 - `pnpm run recruit:jobs:ingest` / `pnpm run recruit:jobs:dry-run`
