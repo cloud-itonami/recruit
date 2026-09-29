@@ -195,10 +195,10 @@ warning では落ちない。**
 
 ## ここに無いもの（探して時間を溶かさないために）
 
-同梱の `CLAUDE.md` は actor の仕様スナップショットで、**この checkout の操作手順
+同梱の `AGENTS.md` は actor の仕様スナップショットで、**この checkout の操作手順
 ではない**。2026-09-06 実測で、次はこの repo に存在しない:
 
-| CLAUDE.md の記述 | この repo での実際 |
+| AGENTS.md の記述 | この repo での実際 |
 |---|---|
 | `pnpm run recruit:jobs:ingest` | `package.json` が無い |
 | `50-infra/k8s/recruit-job-ingester/` | `50-infra/` が無い |
